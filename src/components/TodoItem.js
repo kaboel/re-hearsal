@@ -1,27 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Todos from "./Todos";
 
 class TodoItem extends React.Component {
     todoStyle = () => {
-        const status = this.props.todo.status;
+        const completed = this.props.todo.completed;
 
         return {
             backgroundColor: '#f4f4f4',
             padding: '.4rem',
             borderBottom: '1px solid #ddd',
-            textDecoration: status ? 'line-through' : 'none'
+            textDecoration: completed ? 'line-through' : 'none'
         }
     }
 
     render() {
-        const {id, title} = this.props.todo;
+        const {id, title, completed} = this.props.todo;
 
         return (
             <div style={this.todoStyle()}>
                 <p>
                     <input type="checkbox"
                            onChange={this.props.markComplete.bind(this, id)}
-                           style={{marginRight: '.5rem'}}/>
+                           style={{marginRight: '.5rem'}}
+                           checked={completed}
+                    />
                     {title}
                     <button
                         type="button"
@@ -36,8 +39,11 @@ class TodoItem extends React.Component {
 }
 
 TodoItem.propTypes = {
-    todo: PropTypes.object.isRequired
+    todos: PropTypes.object.isRequired,
+    markComplete: PropTypes.func.isRequired,
+    delTodo: PropTypes.func.isRequired
 };
+
 
 const btnStyle = {
     float: 'right',
