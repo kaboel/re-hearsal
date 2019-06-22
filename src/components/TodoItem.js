@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Todos from "./Todos";
 
 class TodoItem extends React.Component {
     todoStyle = () => {
